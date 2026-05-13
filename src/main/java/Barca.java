@@ -3,7 +3,7 @@ import java.util.Map;
 
 public class Barca {
     private Map<String, Boolean> assentos;
-    private int ocupacao;
+    public int ocupacao;
 
     public Barca() {
         assentos = new HashMap<>();
@@ -60,7 +60,8 @@ public class Barca {
         if (ocupacao < 100 && !(fileira >= 1 && fileira <= 20)) {
             return 2;
         }
-        if (ocupacao < 200 && !(fileira >= 40 && fileira <= 60)) {
+        // correção do erro: if não chevaga se ocupacao era >= 100, então sempre disparava pra fileiras menores que 40 com ocupacao < 200
+        if (ocupacao < 200 && ocupacao >= 100 && !(fileira >= 40 && fileira <= 60)) {
             return 2;
         }
 
